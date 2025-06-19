@@ -1,25 +1,28 @@
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Expense {
 
     private String expenseID;
     private String expenseName;
-    private String belongsTo;
+    //private String belongsTo; // May not need this
     private double priorityLevel;
     private double commitment;
     private double spent;
     private boolean isStatic;
     private Date dateBegan;
+    private ArrayList<Transaction> transactions;
 
     public Expense() {
         this.expenseID = null;
         this.expenseName = null;
-        this.belongsTo = null;
+        //this.belongsTo = null;
         this.priorityLevel = -1;
         this.commitment = -1;
         this.spent = -1;
         this.isStatic = false;
         this.dateBegan = null;
+        this.transactions = null;
     }
 
     // =====expenseID Methods=====
@@ -60,12 +63,13 @@ public class Expense {
     }
 
 
+    /*
     //=====belongsTo Methods=====
     /**
      * Sets the username to the account which this expense belongs.
      * @param belongsTo - The username of the account.
      * @return - The current Expense object for method chaining.
-     */
+     *\/
     public Expense withBelongsTo(String belongsTo) {
         this.belongsTo = belongsTo;
         return this;
@@ -73,10 +77,11 @@ public class Expense {
     /**
      * Gets the username of the account to which this expense belongs.
      * @return - The budget or category name.
-     */
+     *\/
     public String getBelongsTo() {
         return this.belongsTo;
-    }
+    }  
+    */
 
 
     //=====priorityLevel Methods=====
@@ -215,6 +220,40 @@ public class Expense {
      */
     public Date getDateBegan() {
         return this.dateBegan;
+    }
+
+
+    //=====transactions Methods=====
+    /**
+     * Sets the list of transactions associated with this expense.
+     * @param transactions - An ArrayList of Transaction objects associated with the expense.
+     * @return - The current Expense object for method chaining.
+     */
+    public Expense withTransactions(ArrayList<Transaction> transactions) {
+        this.transactions = transactions;
+        return this;
+    }
+    /**
+     * Gets the list of transactions associated with this expense.
+     * @return - An ArrayList of Transaction objects associated with the expense.
+     *          If no transactions are set, returns an empty ArrayList.
+     */
+    public ArrayList<Transaction> getTransactions() {
+        if (this.transactions == null) {
+            return new ArrayList<>();
+        }
+        return this.transactions;
+    }
+    /**
+     * Adds a transaction to the list of transactions associated with this expense.
+     * If the transactions list is null, it initializes a new ArrayList before adding the transaction.
+     * @param transaction - The Transaction object to be added to the expense.
+     */
+    public void addTransaction(Transaction transaction) {
+        if (this.transactions == null) {
+            this.transactions = new ArrayList<>();
+        }
+        this.transactions.add(transaction);
     }
 
 }
