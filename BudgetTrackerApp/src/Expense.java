@@ -3,17 +3,17 @@ import java.sql.Date;
 public class Expense {
 
     private String expenseID;
-    private String expsenseName;
+    private String expenseName;
     private String belongsTo;
-    private int priorityLevel;
-    private int commitment;
-    private int spent;
+    private double priorityLevel;
+    private double commitment;
+    private double spent;
     private boolean isStatic;
     private Date dateBegan;
 
     public Expense() {
         this.expenseID = null;
-        this.expsenseName = null;
+        this.expenseName = null;
         this.belongsTo = null;
         this.priorityLevel = -1;
         this.commitment = -1;
@@ -44,19 +44,19 @@ public class Expense {
     //=====expenseName Methods=====
     /**
      * Sets the name of the expense.
-     * @param expsenseName - The name of the expense.
+     * @param expenseName - The name of the expense.
      * @return - The current Expense object for method chaining.
      */
-    public Expense withExpsenseName(String expsenseName) {
-        this.expsenseName = expsenseName;
+    public Expense withExpenseName(String expenseName) {
+        this.expenseName = expenseName;
         return this;
     }
     /**
      * Gets the name of the expense.
      * @return - The name of the expense.
      */
-    public String getExpsenseName() {
-        return this.expsenseName;
+    public String getexpenseName() {
+        return this.expenseName;
     }
 
 
@@ -87,7 +87,7 @@ public class Expense {
      *                       (e.g., 1 for highest priority, 2 for medium priority, etc.).
      * @return - The current Expense object for method chaining.
      */
-    public Expense withPriorityLevel(int priorityLevel) {
+    public Expense withPriorityLevel(double priorityLevel) {
         this.priorityLevel = priorityLevel;
         return this;
     }
@@ -95,7 +95,7 @@ public class Expense {
      * Gets the priority level of the expense.
      * @return - The priority level of the expense, where a lower number indicates higher priority.
      */
-    public int getPriorityLevel() {
+    public double getPriorityLevel() {
         return this.priorityLevel;
     }
 
@@ -104,13 +104,13 @@ public class Expense {
     /**
      * Sets the commitment amount for the expense.
      * The commitment amount typically represents the budgeted or planned amount for the expense.
-     * @param commitment - The commitment amount for the expense, must be a non-negative integer.
+     * @param commitment - The commitment amount for the expense, must be a non-negative double.
      * @return - The current Expense object for method chaining.
      * @throws IllegalArgumentException If the commitment is negative.
      */
-    public Expense withCommitment(int commitment) {
+    public Expense withCommitment(double commitment) {
         if (commitment < 0) {
-            throw new IllegalArgumentException("Commitment must be a non-negative integer.");
+            throw new IllegalArgumentException("Commitment must be a non-negative double.");
         }
         this.commitment = commitment;
         return this;
@@ -119,7 +119,7 @@ public class Expense {
      * Gets the commitment amount for the expense.
      * @return - The commitment amount for the expense, or -1 if not set.
      */
-    public int getCommitment() {
+    public double getCommitment() {
         return this.commitment;
     }
     /**
@@ -129,7 +129,7 @@ public class Expense {
      * @return - The new commitment amount after alteration.
      * @throws IllegalArgumentException If the resulting commitment would be negative.
      */
-    public int alterCommitment(int amount) {
+    public double alterCommitment(double amount) {
         if (this.commitment + amount < 0) {
             throw new IllegalArgumentException("Commitment cannot be negative after alteration.");
         }
@@ -141,13 +141,13 @@ public class Expense {
     //=====spent Methods=====
     /**
      * Sets the amount spent for the expense.
-     * @param spent - The amount spent for the expense, must be a non-negative integer.
+     * @param spent - The amount spent for the expense, must be a non-negative double.
      * @return - The current Expense object for method chaining.
      * @throws IllegalArgumentException If the spent amount is negative.
      */
-    public Expense withSpent(int spent) {
+    public Expense withSpent(double spent) {
         if (spent < 0) {
-            throw new IllegalArgumentException("Spent amount must be a non-negative integer.");
+            throw new IllegalArgumentException("Spent amount must be a non-negative double.");
         }
         this.spent = spent;
         return this;
@@ -156,7 +156,7 @@ public class Expense {
      * Gets the amount spent for the expense.
      * @return - The amount spent for the expense, or -1 if not set.
      */
-    public int getSpent() {
+    public double getSpent() {
         return this.spent;
     }
     /**
@@ -166,7 +166,7 @@ public class Expense {
      * @return - The new spent amount after alteration.
      * @throws IllegalArgumentException If the resulting spent amount would be negative.
      */
-    public int alterSpent(int amount) {
+    public double alterSpent(double amount) {
         if (this.spent + amount < 0) {
             throw new IllegalArgumentException("Spent amount cannot be negative after alteration.");
         }
